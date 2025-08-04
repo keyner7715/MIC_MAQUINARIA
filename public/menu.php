@@ -13,7 +13,7 @@ $rol = $_SESSION['rol'] ?? 'Rol no definido'; // Obtenemos el rol guardado o men
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Gestion de Seguridad Privada</title>
+    <title>Panel de Gestion Maquinaria de Alquiler</title>
     <link rel="stylesheet" href="style.css">
     <style>
         .header-box {
@@ -30,7 +30,7 @@ $rol = $_SESSION['rol'] ?? 'Rol no definido'; // Obtenemos el rol guardado o men
             z-index: 2;
         }
         header {
-            background-image: url('../public/empresa_privada.jpg'); /* Cambia la ruta si tu imagen está en otra carpeta */
+            background-image: url('../public/maquinaria.jpg'); /* Cambia la ruta si tu imagen está en otra carpeta */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -124,7 +124,7 @@ $rol = $_SESSION['rol'] ?? 'Rol no definido'; // Obtenemos el rol guardado o men
         <div class="container">
             <div class="header-box">
 
-                <h1>Panel de Seguridad Privada</h1>
+                <h1>Panel de Maquina de Alquiler</h1>
                 <p>Gestión centralizada </p>
                 <p>Rol: <strong><?= htmlspecialchars($_SESSION['rol']) ?></strong></p>
                 <p>Bienvenido, <strong><?= htmlspecialchars($_SESSION['nombre_usuario']) ?></strong></p>
@@ -153,47 +153,47 @@ $rol = $_SESSION['rol'] ?? 'Rol no definido'; // Obtenemos el rol guardado o men
                     <div class="service-description">Microservicio de gestión de usuarios</div>
                 </div>
 
-                <!-- Servicios de Guardias -->
+                <!-- Servicios de Maquinarias -->
                 <div class="service-category">
-                    <h3>🛡️ Gestión de Guardias</h3>
-                    <a href="../guardias_services/R_guardias_services.php" class="service-link">Listar Guardias</a>
-                    <div class="service-description">Microservicio de gestión de guardias</div>
+                    <h3>🚜 Gestión de Maquinarias</h3>
+                    <a href="../maquinaria_services/R_maquinaria_services.php" class="service-link">Listar Maquinarias</a>
+                    <div class="service-description">Microservicio de gestión de maquinarias</div>
                 </div>
-                <!-- Servicios de Supervisores -->
+                <!-- Servicios de Técnicos -->
                 <div class="service-category">
-                    <h3>👤 Gestión de Supervisores</h3>
-                    <a href="../supervisores_services/R_supervisor.php" class="service-link">Listar Supervisores</a>
-                    <div class="service-description">Microservicio de gestión de supervisores</div>
+                    <h3> 🔧Gestión de Técnicos</h3>
+                    <a href="../tecnicos_services/R_tecnicos.php" class="service-link">Listar Técnicos</a>
+                    <div class="service-description">Microservicio de gestión de técnicos</div>
                 </div>
-                <!-- Servicios de Zonas de Vigilancia -->
+                <!-- Servicios de Mantenimientos -->
                 <div class="service-category">
-                    <h3>👁️ Gestión de Zonas de Vigilancia</h3>
-                    <a href="../zonas_vigilancia_services/R_zonas_vigilancia.php" class="service-link">Listar Zonas de Vigilancia</a>
-                    <div class="service-description">Microservicio de gestión de zonas de vigilancia</div>
+                    <h3>🛠️ Gestión de Mantenimientos</h3>
+                    <a href="../mantenimientos_services/R_mantenimiento.php" class="service-link">Listar Mantenimientos</a>
+                    <div class="service-description">Microservicio de gestión de mantenimientos</div>
                 </div>
-                <!-- Servicios de Guardia por Zona -->
+                <!-- Servicios de Técnicos por Maquinaria -->
                 <div class="service-category">  
-                    <h3>🛡️ Gestión de Guardia por Zona</h3>
-                    <a href="../guardias_zonas_services/R_guardia_zona.php" class="service-link">Listar Guardias por Zona</a>
-                    <div class="service-description">Microservicio de gestión de guardias por zona</div>
+                    <h3>🚜👤 Gestión de Técnicos por Maquinaria</h3>
+                    <a href="../tecnicos_maquinarias_services/R_tecnicos_maquinarias.php" class="service-link">Listar Técnicos por Maquinaria</a>
+                    <div class="service-description">Microservicio de gestión de técnicos por maquinaria</div>
                 </div>
-                <!-- Servicios de Servicios Contratados -->
+                <!-- Servicios de Disponibilidad-->
                 <div class="service-category">
-                    <h3>🛠️ Gestión de Servicios Contratados</h3>
-                    <a href="../servicios_contratados_services/R_servicios_contratados.php" class="service-link">Listar Servicios Contratados</a>
-                    <div class="service-description">Microservicio de gestión de servicios contratados</div>
+                    <h3> ⏱️ Gestión de Disponibilidad</h3>
+                    <a href="../disponibilidad_maquinaria_services/R_disponibilidad.php" class="service-link">Listar Disponibilidad</a>
+                    <div class="service-description">Microservicio de gestión de disponibilidad de maquinarias</div>
                 </div>
-                <!-- Servicios de Turnos de Trabajo -->
+                <!-- Servicios de Ordenes de Trabajo -->
                 <div class="service-category">
-                    <h3>🕒 Gestión de Turnos de Trabajo</h3>
-                    <a href="../turnos_trabajo/R_turnos_trabajo.php" class="service-link">Listar Turnos de Trabajo</a>
-                    <div class="service-description">Microservicio de gestión de turnos de trabajo</div>
+                    <h3>📖 Gestión de Ordenes de Trabajo</h3>
+                    <a href="../ordenes_trabajo_services/R_ordenes_trabajo.php" class="service-link">Listar Ordenes de Trabajo</a>
+                    <div class="service-description">Microservicio de gestión de ordenes de trabajo</div>
                 </div>
-                <!-- Servicios de asignaciones -->
+                <!-- Servicios de Detalle de Alquiler -->
                 <div class="service-category">
-                    <h3>📑 Gestión de Asignaciones</h3>
-                    <a href="../asignaciones_services/R_asignaciones.php" class="service-link">Listar Asignaciones</a>
-                    <div class="service-description">Microservicio de gestión de asignaciones</div>
+                    <h3>📑 Gestión de Detalle de Alquiler</h3>
+                    <a href="../detalle_alquiler_services/R_detalle_alquiler.php" class="service-link">Listar Detalle de Alquiler</a>
+                    <div class="service-description">Microservicio de gestión de detalle de alquiler</div>
                 </div>
     </main>
 

@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Login - Empresa Seguridad Privada</title>
+    <title>Login - Alquiler de Maquinaria</title>
     <link rel="stylesheet" href="../public/login.css">
     <link rel="stylesheet" href="../public/forms.css">
 </head>
@@ -10,7 +10,7 @@
     <!-- Fondo con imagen y formulario centrado -->
     <div class="login-bg-split">
         <div class="login-bg-image">
-            <img src="../public/empresa_privada.jpg" alt="Fondo de Login">
+            <img src="../public/maquinaria.jpg" alt="Fondo de Login">
         </div>
 
         <div class="login-bg-form">

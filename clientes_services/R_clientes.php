@@ -37,8 +37,8 @@ try {
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Razón Social</th>
-                    <th>RUC</th>
+                    <th>Nombres</th>
+                    <th>RUC/Cédula</th>
                     <th>Dirección</th>
                     <th>Teléfono</th>
                     <th>Correo</th>
@@ -54,8 +54,8 @@ try {
                     <?php foreach ($clientes as $cliente): ?>
                         <tr>
                             <td><?= $cliente['id_cliente'] ?></td>
-                            <td><?= htmlspecialchars($cliente['razon_social']) ?></td>
-                            <td><?= htmlspecialchars($cliente['ruc']) ?></td>
+                            <td><?= htmlspecialchars($cliente['nombre_cliente']) ?></td>
+                            <td><?= htmlspecialchars($cliente['ruc_cedula']) ?></td>
                             <td><?= htmlspecialchars($cliente['direccion']) ?></td>
                             <td><?= htmlspecialchars($cliente['telefono']) ?></td>
                             <td><?= htmlspecialchars($cliente['correo']) ?></td>
@@ -63,6 +63,8 @@ try {
                                 <?php if (tienePermiso('editar')): ?>
                                     <a href="U_clientes.php?id=<?= $cliente['id_cliente'] ?>" class="btn-edit">Editar</a>
                                 <?php endif; ?>
+                                <br></br>
+                                
                                 <?php if (tienePermiso('eliminar')): ?>
                                     <a href="D_clientes.php?id=<?= $cliente['id_cliente'] ?>" class="btn-delete" onclick="return confirm('¿Deseas eliminar este cliente?')">Eliminar</a>
                                 <?php endif; ?>

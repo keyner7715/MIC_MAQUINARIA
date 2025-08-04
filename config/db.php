@@ -1,7 +1,7 @@
 <?php
 // Configuración de la base de datos
 $host = 'localhost';
-$dbname = 'empresa_privada';
+$dbname = 'maquinaria_alquiler';
 $username = 'root';
 $password = '';
 

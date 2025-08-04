@@ -82,58 +82,76 @@ CREATE TABLE tecnico_maquinaria (
     FOREIGN KEY (id_maquinaria) REFERENCES maquinarias(id_maquinaria)
 );
 
+-- USUARIOS 
+
+CREATE TABLE usuario (
+  id_usuario INT(11) NOT NULL,
+  nombre_usuario VARCHAR(50) DEFAULT NULL,
+  contrasena VARCHAR(100) DEFAULT NULL,
+  rol VARCHAR(20) DEFAULT NULL,
+  estado VARCHAR(10) DEFAULT NULL
+);
+
 
 -- INSERTAR DATOS DE LAS TABLAS 
 
--- Insertar clientes
-INSERT INTO clientes (cliente_nombre, cliente_ruc_cedula, cliente_direccion, cliente_telefono, cliente_correo) VALUES
-('Constructora Andes', '1790012345001', 'Av. Amazonas y Colón', '0999999999', 'contacto@andes.com'),
-('Inversiones Sierra', '1790098765001', 'Av. República y 10 de Agosto', '0988888888', 'info@sierra.ec'),
-('Alquiladora Eléctrica', '1790054321001', 'Panamericana Norte km 12', '0977777777', 'ventas@electrica.ec');
+-- 1. Insertar clientes
+INSERT INTO clientes (nombre_cliente, ruc_cedula, direccion, telefono, correo) VALUES
+('Constructora Los Andes', '1790012345001', 'Av. de los Shyris y Naciones Unidas', '0991112233', 'contacto@losandes.com'),
+('Maquinarias Sierra Azul', '1790023456001', 'Panamericana Norte Km 8', '0988776655', 'ventas@sierraazul.ec'),
+('Grupo Constructor Eléctrico', '1790034567001', 'Av. 6 de Diciembre y Eloy Alfaro', '0977443322', 'info@electroconst.com');
 
--- Insertar maquinarias
-INSERT INTO maquinarias (maquinaria_nombre, maquinaria_tipo, maquinaria_marca, maquinaria_modelo, maquinaria_anio, maquinaria_estado, maquinaria_precio_dia) VALUES
-('Excavadora 320', 'Excavadora', 'Caterpillar', '320D', 2018, 'disponible', 350.00),
-('Montacargas 5T', 'Montacargas', 'Toyota', 'GENEO-5', 2020, 'disponible', 180.00),
-('Retroexcavadora JCB', 'Retroexcavadora', 'JCB', '3CX', 2017, 'mantenimiento', 300.00);
+-- 2. Insertar maquinarias
+INSERT INTO maquinarias (nombre_maquinaria, tipo, marca, modelo, año, estado_maquinaria, precio_diario) VALUES
+('Excavadora Hidráulica CAT 320D', 'Excavadora', 'Caterpillar', '320D', 2019, 'disponible', 400.00),
+('Retroexcavadora JCB 3CX', 'Retroexcavadora', 'JCB', '3CX', 2018, 'alquilada', 350.00),
+('Cargador Frontal Komatsu WA380', 'Cargador', 'Komatsu', 'WA380', 2020, 'mantenimiento', 500.00);
 
--- Insertar técnicos
-INSERT INTO tecnicos (tecnico_nombre, tecnico_especialidad, tecnico_telefono, tecnico_correo) VALUES
+-- 3. Insertar técnicos
+INSERT INTO tecnicos (nombre_tecnico, especialidad, telefono, correo) VALUES
 ('Carlos Pérez', 'Mecánica pesada', '0981122334', 'cperez@empresa.com'),
-('María Gómez', 'Electromecánica', '0982233445', 'mgomez@empresa.com');
+('María Gómez', 'Sistemas hidráulicos', '0982233445', 'mgomez@empresa.com');
 
--- Insertar órdenes de alquiler
-INSERT INTO ordenes_alquiler (orden_cliente_id, orden_fecha_inicio, orden_fecha_fin, orden_estado, orden_total) VALUES
-(1, '2025-08-01', '2025-08-05', 'activa', 1400.00),
-(2, '2025-08-02', '2025-08-04', 'pendiente', 360.00);
+-- 4. Insertar órdenes de alquiler
+INSERT INTO ordenes_alquiler (id_cliente, fecha_inicio, fecha_fin, estado_orden, total) VALUES
+(1, '2025-08-01', '2025-08-05', 'activa', 1600.00),
+(2, '2025-08-03', '2025-08-06', 'pendiente', 1050.00);
 
--- Insertar detalles de alquiler
-INSERT INTO detalle_alquiler (detalle_orden_id, detalle_maquinaria_id, detalle_dias, detalle_subtotal) VALUES
-(1, 1, 4, 1400.00), -- Excavadora por 4 días
-(2, 2, 2, 360.00),  -- Montacargas por 2 días
-(2, 1, 2, 700.00);  -- Excavadora por 2 días (en otra orden si se permite compartir)
+-- 5. Insertar detalles de alquiler
+INSERT INTO detalle_alquiler (id_orden, id_maquinaria, dias_alquiler, subtotal) VALUES
+(1, 1, 4, 1600.00),  -- CAT 320D por 4 días
+(2, 2, 3, 1050.00);  -- JCB 3CX por 3 días
 
--- Insertar disponibilidad de maquinaria
-INSERT INTO disponibilidad_maquinaria (disponibilidad_maquinaria_id, disponibilidad_fecha, disponibilidad_estado) VALUES
+-- 6. Insertar disponibilidad de maquinarias
+INSERT INTO disponibilidad_maquinaria (id_maquinaria, fecha, disponible) VALUES
 (1, '2025-08-01', FALSE),
 (1, '2025-08-02', FALSE),
-(2, '2025-08-02', FALSE),
-(3, '2025-08-01', FALSE),
-(3, '2025-08-03', FALSE);
+(1, '2025-08-03', FALSE),
+(1, '2025-08-04', FALSE),
+(2, '2025-08-03', FALSE),
+(2, '2025-08-04', FALSE),
+(2, '2025-08-05', FALSE),
+(3, '2025-08-01', FALSE);
 
--- Insertar mantenimientos
-INSERT INTO mantenimiento (mantenimiento_maquinaria_id, mantenimiento_fecha, mantenimiento_descripcion, mantenimiento_costo, mantenimiento_tecnico_id) VALUES
-(3, '2025-07-28', 'Cambio de sistema hidráulico', 520.00, 1),
-(3, '2025-08-01', 'Revisión eléctrica', 250.00, 2);
+-- 7. Insertar mantenimiento
+INSERT INTO mantenimiento (id_maquinaria, fecha, descripcion, costo_mantenimiento, id_tecnico) VALUES
+(3, '2025-07-28', 'Revisión del sistema eléctrico y cambio de aceite hidráulico.', 300.00, 2),
+(3, '2025-08-01', 'Cambio de válvula principal y ajuste del sistema de frenos.', 420.00, 1);
 
--- Insertar tenico_maquinaria
-INSERT INTO tecnico_maquinaria (tm_tecnico_id, tm_maquinaria_id, tm_fecha_asignacion) VALUES
+-- 8. Insertar relación técnico ↔ maquinaria
+INSERT INTO tecnico_maquinaria (id_tecnico, id_maquinaria, fecha_asignacion) VALUES
 (1, 3, '2025-07-28'),
 (2, 3, '2025-08-01'),
-(1, 1, '2025-08-01'); -- técnico también asignado a maquinaria 1
+(1, 1, '2025-08-02');
 
 
--- OTORGAR PERMISOS Y ROLES 
+-- Insertar usuario administrador
+
+INSERT INTO usuario (id_usuario, nombre_usuario, contrasena, rol, estado) VALUES
+(1, 'admin', '$2y$10$QoRICDFmvF1y/JxkZ6VJbOWt6dHEbNFmiqEnmpaWHOqnU359aqfZW', 'Administrador', 'activo');
+
+
+-- OTORGAR PERMISOS Y ROLES
 
 
 -- Crear usuarios con contraseña
