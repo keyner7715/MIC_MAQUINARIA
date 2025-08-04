@@ -27,7 +27,7 @@ CREATE TABLE ordenes_alquiler (
     fecha_inicio DATE NOT NULL,
     fecha_fin DATE NOT NULL,
     estado_orden VARCHAR(20) DEFAULT 'pendiente', -- pendiente, activa, finalizada, cancelada
-    total DECIMAL(10,2) DEFAULT 0,
+    total_dias INT NOT NULL,
     FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente)
 );
 

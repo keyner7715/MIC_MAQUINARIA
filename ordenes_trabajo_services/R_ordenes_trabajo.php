@@ -7,7 +7,7 @@ verificarPermiso('listar');
 
 try {
     // Consulta para obtener las órdenes de alquiler con nombre del cliente
-    $sql = "SELECT o.id_orden, o.fecha_inicio, o.fecha_fin, o.estado_orden, o.total, c.nombre_cliente
+    $sql = "SELECT o.id_orden, o.fecha_inicio, o.fecha_fin, o.estado_orden, o.total_dias, c.nombre_cliente
             FROM ordenes_alquiler o
             INNER JOIN clientes c ON o.id_cliente = c.id_cliente
             ORDER BY o.id_orden DESC";
@@ -42,7 +42,7 @@ try {
                     <th>Fecha Inicio</th>
                     <th>Fecha Fin</th>
                     <th>Estado</th>
-                    <th>Total</th>
+                    <th>Total Dias</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -59,7 +59,7 @@ try {
                             <td><?= htmlspecialchars($orden['fecha_inicio']) ?></td>
                             <td><?= htmlspecialchars($orden['fecha_fin']) ?></td>
                             <td><?= htmlspecialchars($orden['estado_orden']) ?></td>
-                            <td><?= number_format($orden['total'], 2) ?></td>
+                            <td><?= number_format($orden['total_dias'],) ?></td>
                             <td>
                                 <?php if (tienePermiso('editar')): ?>
                                     <a href="U_ordenes_trabajo.php?id=<?= $orden['id_orden'] ?>" class="btn-edit">Editar</a>
